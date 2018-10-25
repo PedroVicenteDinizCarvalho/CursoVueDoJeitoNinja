@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Diretivas / v-bind</title>
+</head>
+<body>
+	<div id="app">
+		<h1>{{titulo}}</h1>
+		<img v-bind:src="imagem" alt="">
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				titulo: "vue do jeito ninja",
+				imagem: "https://cdn.shopify.com/s/files/1/0533/2089/files/vuejs-tutorial_2d2a853c-aa2f-44b0-80df-933b495f77f8.png?v=1509478492"
+			}
+		});
+	</script>
+</body>
+</html>

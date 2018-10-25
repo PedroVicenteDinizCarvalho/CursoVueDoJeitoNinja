@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Propriedades Computed e Watch</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<h1>{{titulo}}</h1>
+
+		 {{nomeCompleto}} 
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: "#app",
+
+			data: {
+				titulo: "Vue JS do jeito ninja",
+				primeiroNome: "",
+				sobrenome: "",
+			//	nomeCompleto: ""
+			},
+
+			computed: {
+				nomeCompleto(){
+					return this.primeiroNome + ' ' + this.sobrenome;
+				}
+			},
+
+			watch: {
+			//	primeiroNome(novoValor){
+			//		this.nomeCompleto = novoValor + ' ' + this.sobrenome;
+			//	},
+
+			//	sobrenome(novoValor){
+			//		this.nomeCompleto = this.primeiroNome + ' ' + novoValor;
+			//	}
+			//	console.log
+
+				primeiroNome(novoValor){
+					this.atualizarUsuario();
+				},
+
+				sobrenome(novoValor){
+					this.atualizarUsuario();
+				}
+			},
+
+			methods: {
+				atualizarUsuario(){
+					alert('Usuário Atualizado!!');
+				}
+			},
+		});
+	</script>
+</body>
+</html>
