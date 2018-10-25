@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Componentes Transferindo dados pais e filhos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<h1>{{ titulo }}</h1>
+
+		<div class="container">
+			<input-form></input-form>
+
+			<br>
+
+			<my-list></my-list>
+		</div>
+	</div>
+	
+	<template id="form">
+		<div class="container">
+			<div class="card">
+				<div class="car-block">
+					<div class="form-group">
+						<label for="" class="form-control">Titulo</label>
+						<input v-model="title" type="text" class="form-control">
+					</div>
+					<button v-on:click.stop.prevent="submit()" class="btn btn-primary" type="submit">
+						Enviar
+					</button>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="list">
+		<ul class="list-group">
+			<li class="list-group-item" v-for="item in list">{{item.title}}</li>
+		</ul>
+	</template>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script>
+		
+		Vue.component('input-form', {
+			template: "#form",
+
+			data() {
+				return{
+						title: '',
+				}
+			},
+
+			methods: {
+				submit(){
+					eventBus.$emit('submit', this.title);
+				}	
+			}
+		});
+
+		Vue.component('my-list', {
+			template: "#list",
+
+			created() {
+				var vm = this;
+
+				eventBus.$on('submit', function(title) {
+					if(title){
+						vm.list.push({title: title});
+					}
+				});
+			},
+
+			data () {
+				return{
+					list: [
+						{title: "Ir a feira"},
+					]
+				}
+			}
+		});
+
+		var eventBus = new Vue();
+
+		var app = new Vue({
+			el: "#app",
+			data: {
+				titulo: "vuejs do jeito ninja"
+			}
+		});
+	</script>
+</body>
+</html>
