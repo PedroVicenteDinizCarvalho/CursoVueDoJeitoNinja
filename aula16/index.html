@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aula 01</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<h1>{{ titulo }}</h1>
+
+		<button class="btn btn-primary" v-on:click.stop.prevent="getUsers()">Procurar Usuarios</button>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script>
+		var mixin = {
+			created(){
+					console.log('hello vue from mixin');
+			},
+
+			methods: {
+				getUsers(){
+					console.log('GET USERS');
+				}
+			}
+		}
+
+		var app = new Vue({
+			el: "#app",
+
+			mixins: [mixin],
+
+			data: {
+				titulo: "Aula 01 - vuejs do jeito ninja"
+			},
+
+			methods:{
+				getUsers(){
+					alert('Ignorou o Get Users do Mixin');
+				}
+			}
+		});
+	</script>
+</body>
+</html>
